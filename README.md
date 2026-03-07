@@ -35,20 +35,3 @@ Program ini memiliki 3 class data:
 
 ## Tampilan Program
 
-### Menu Utama
-![Menu Utama](assets/menu-utama.png)
-
-### Tambah Data
-![Tambah Data](assets/tambah-data.png)
-
-### Lihat Semua Data
-![Lihat Data](assets/lihat-data.png)
-
-### Ubah Data
-![Ubah Data](assets/ubah-data.png)
-
-### Hapus Data
-![Hapus Data](assets/hapus-data.png)
-
-### Keluar Program
-![Keluar](assets/keluar.png)
