@@ -21,7 +21,6 @@ class Main {
             pilihan = sc.nextInt();
             sc.nextLine();
 
-            // ===================== MENU TANAMAN =====================
             if (pilihan == 1) {
                 int sub;
                 do {
@@ -102,7 +101,6 @@ class Main {
 
                 } while (sub != 0);
 
-                // ===================== MENU PENGGUNA =====================
             } else if (pilihan == 2) {
                 int sub;
                 do {
@@ -179,7 +177,6 @@ class Main {
 
                 } while (sub != 0);
 
-                // ===================== MENU CATATAN =====================
             } else if (pilihan == 3) {
                 int sub;
                 do {
