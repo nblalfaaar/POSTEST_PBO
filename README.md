@@ -24,7 +24,7 @@ Program memiliki 3 class utama yaitu Tanaman, Pengguna, dan Catatan. Catatan ber
 
 ---
 
-## Tampilan Program
+## Tampilan Output Program
 
 ### Menu Utama
 ![Menu Utama](assets/0-menu-utama.png)
