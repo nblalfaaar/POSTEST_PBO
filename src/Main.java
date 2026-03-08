@@ -92,7 +92,6 @@ class Main {
                             if (no >= 1 && no <= daftarTanaman.size()) {
                                 String namaHapus = daftarTanaman.get(no - 1).nama;
                                 daftarTanaman.remove(no - 1);
-                                // hapus catatan yang terkait
                                 daftarCatatan.removeIf(c -> c.namaTanaman.equals(namaHapus));
                                 System.out.println(namaHapus + " berhasil dihapus.");
                             } else {
@@ -170,7 +169,6 @@ class Main {
                             if (no >= 1 && no <= daftarPengguna.size()) {
                                 String namaHapus = daftarPengguna.get(no - 1).nama;
                                 daftarPengguna.remove(no - 1);
-                                // hapus catatan yang terkait
                                 daftarCatatan.removeIf(c -> c.namaPengguna.equals(namaHapus));
                                 System.out.println(namaHapus + " berhasil dihapus.");
                             } else {
@@ -197,7 +195,7 @@ class Main {
 
                     if (sub == 1) {
                         if (daftarPengguna.isEmpty() || daftarTanaman.isEmpty()) {
-                            System.out.println("Pastikan data pengguna dan tanaman sudah ada terlebih dahulu.");
+                            System.out.println("Pastikan data pengguna dan tanaman sudah ada terlebih dahulu ya!.");
                         } else {
                             System.out.println("Pilih Pengguna:");
                             for (int i = 0; i < daftarPengguna.size(); i++) {
@@ -282,7 +280,7 @@ class Main {
 
         } while (pilihan != 0);
 
-        System.out.println("Program selesai.");
+        System.out.println("Program selesai. Terimakasih!");
         sc.close();
     }
 }
