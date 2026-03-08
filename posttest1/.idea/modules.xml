@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-<<<<<<< HEAD
-      <module fileurl="file://$PROJECT_DIR$/POSTTEST_PBO.iml" filepath="$PROJECT_DIR$/POSTTEST_PBO.iml" />
-=======
       <module fileurl="file://$PROJECT_DIR$/posttest1.iml" filepath="$PROJECT_DIR$/posttest1.iml" />
->>>>>>> 0c1f559171b4d8a261f4f339b8f00ac608f8edf6
     </modules>
   </component>
 </project>
