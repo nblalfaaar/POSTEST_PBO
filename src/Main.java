@@ -2,10 +2,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 class Main {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         ArrayList<Tanaman> daftarTanaman = new ArrayList<>();
-        ArrayList<Manfaat> daftarManfaat = new ArrayList<>();
-        ArrayList<Resep> daftarResep = new ArrayList<>();
+        ArrayList<Pengguna> daftarPengguna = new ArrayList<>();
+        ArrayList<Catatan> daftarCatatan = new ArrayList<>();
         Scanner sc = new Scanner(System.in);
         int pilihan;
 
@@ -13,103 +13,276 @@ class Main {
             System.out.println("\n================================");
             System.out.println("  SISTEM MANAJEMEN TOGA");
             System.out.println("================================");
-            System.out.println("1. Tambah Data");
-            System.out.println("2. Lihat Semua Data");
-            System.out.println("3. Ubah Data");
-            System.out.println("4. Hapus Data");
+            System.out.println("1. Kelola Data Tanaman");
+            System.out.println("2. Kelola Data Pengguna");
+            System.out.println("3. Kelola Data Catatan");
             System.out.println("0. Keluar");
-            System.out.println("Pilih menu: ");
+            System.out.print("Pilih menu: ");
             pilihan = sc.nextInt();
             sc.nextLine();
 
+            // ===================== MENU TANAMAN =====================
             if (pilihan == 1) {
-                System.out.println("Nama Tanaman   : ");
-                String nama = sc.nextLine();
-                System.out.println("Nama Latin     : ");
-                String namaLatin = sc.nextLine();
-                System.out.println("Penyakit       : ");
-                String penyakit = sc.nextLine();
-                System.out.println("Bagian Tanaman : ");
-                String bagian = sc.nextLine();
-                System.out.println("Bahan          : ");
-                String bahan = sc.nextLine();
-                System.out.println("Cara Buat      : ");
-                String caraBuat = sc.nextLine();
+                int sub;
+                do {
+                    System.out.println("\n--- MENU TANAMAN ---");
+                    System.out.println("1. Tambah Tanaman");
+                    System.out.println("2. Lihat Semua Tanaman");
+                    System.out.println("3. Ubah Tanaman");
+                    System.out.println("4. Hapus Tanaman");
+                    System.out.println("0. Kembali");
+                    System.out.print("Pilih: ");
+                    sub = sc.nextInt();
+                    sc.nextLine();
 
-                daftarTanaman.add(new Tanaman(nama, namaLatin));
-                daftarManfaat.add(new Manfaat(penyakit, bagian));
-                daftarResep.add(new Resep(bahan, caraBuat));
-                System.out.println("Data berhasil ditambahkan!");
+                    if (sub == 1) {
+                        System.out.print("Nama Tanaman : ");
+                        String nama = sc.nextLine();
+                        System.out.print("Nama Latin   : ");
+                        String namaLatin = sc.nextLine();
+                        System.out.print("Manfaat      : ");
+                        String manfaat = sc.nextLine();
+                        daftarTanaman.add(new Tanaman(nama, namaLatin, manfaat));
+                        System.out.println("Tanaman berhasil ditambahkan!");
 
+                    } else if (sub == 2) {
+                        if (daftarTanaman.isEmpty()) {
+                            System.out.println("Belum ada data tanaman.");
+                        } else {
+                            for (int i = 0; i < daftarTanaman.size(); i++) {
+                                System.out.println("\nNo. " + (i + 1));
+                                daftarTanaman.get(i).tampilInfo();
+                            }
+                        }
+
+                    } else if (sub == 3) {
+                        if (daftarTanaman.isEmpty()) {
+                            System.out.println("Belum ada data tanaman.");
+                        } else {
+                            for (int i = 0; i < daftarTanaman.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarTanaman.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarTanaman.size()) {
+                                Tanaman t = daftarTanaman.get(no - 1);
+                                System.out.print("Nama Tanaman : ");
+                                t.nama = sc.nextLine();
+                                System.out.print("Nama Latin   : ");
+                                t.namaLatin = sc.nextLine();
+                                System.out.print("Manfaat      : ");
+                                t.manfaat = sc.nextLine();
+                                System.out.println("Tanaman berhasil diubah!");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
+
+                    } else if (sub == 4) {
+                        if (daftarTanaman.isEmpty()) {
+                            System.out.println("Belum ada data tanaman.");
+                        } else {
+                            for (int i = 0; i < daftarTanaman.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarTanaman.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarTanaman.size()) {
+                                String namaHapus = daftarTanaman.get(no - 1).nama;
+                                daftarTanaman.remove(no - 1);
+                                // hapus catatan yang terkait
+                                daftarCatatan.removeIf(c -> c.namaTanaman.equals(namaHapus));
+                                System.out.println(namaHapus + " berhasil dihapus.");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
+                    }
+
+                } while (sub != 0);
+
+                // ===================== MENU PENGGUNA =====================
             } else if (pilihan == 2) {
-                if (daftarTanaman.isEmpty()) {
-                    System.out.println("Belum ada data.");
-                } else {
-                    for (int i = 0; i < daftarTanaman.size(); i++) {
-                        System.out.println("\nNo. " + (i + 1));
-                        daftarTanaman.get(i).tampilInfo();
-                        daftarManfaat.get(i).tampilInfo();
-                        daftarResep.get(i).tampilInfo();
+                int sub;
+                do {
+                    System.out.println("\n--- MENU PENGGUNA ---");
+                    System.out.println("1. Tambah Pengguna");
+                    System.out.println("2. Lihat Semua Pengguna");
+                    System.out.println("3. Ubah Pengguna");
+                    System.out.println("4. Hapus Pengguna");
+                    System.out.println("0. Kembali");
+                    System.out.print("Pilih: ");
+                    sub = sc.nextInt();
+                    sc.nextLine();
+
+                    if (sub == 1) {
+                        System.out.print("Nama    : ");
+                        String nama = sc.nextLine();
+                        System.out.print("Alamat  : ");
+                        String alamat = sc.nextLine();
+                        daftarPengguna.add(new Pengguna(nama, alamat));
+                        System.out.println("Pengguna berhasil ditambahkan!");
+
+                    } else if (sub == 2) {
+                        if (daftarPengguna.isEmpty()) {
+                            System.out.println("Belum ada data pengguna.");
+                        } else {
+                            for (int i = 0; i < daftarPengguna.size(); i++) {
+                                System.out.println("\nNo. " + (i + 1));
+                                daftarPengguna.get(i).tampilInfo();
+                            }
+                        }
+
+                    } else if (sub == 3) {
+                        if (daftarPengguna.isEmpty()) {
+                            System.out.println("Belum ada data pengguna.");
+                        } else {
+                            for (int i = 0; i < daftarPengguna.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarPengguna.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarPengguna.size()) {
+                                Pengguna p = daftarPengguna.get(no - 1);
+                                System.out.print("Nama    : ");
+                                p.nama = sc.nextLine();
+                                System.out.print("Alamat  : ");
+                                p.alamat = sc.nextLine();
+                                System.out.println("Pengguna berhasil diubah!");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
+
+                    } else if (sub == 4) {
+                        if (daftarPengguna.isEmpty()) {
+                            System.out.println("Belum ada data pengguna.");
+                        } else {
+                            for (int i = 0; i < daftarPengguna.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarPengguna.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarPengguna.size()) {
+                                String namaHapus = daftarPengguna.get(no - 1).nama;
+                                daftarPengguna.remove(no - 1);
+                                // hapus catatan yang terkait
+                                daftarCatatan.removeIf(c -> c.namaPengguna.equals(namaHapus));
+                                System.out.println(namaHapus + " berhasil dihapus.");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
                     }
-                }
+
+                } while (sub != 0);
+
+                // ===================== MENU CATATAN =====================
             } else if (pilihan == 3) {
-                if (daftarTanaman.isEmpty()) {
-                    System.out.println("Belum ada data.");
-                } else {
-                    for (int i = 0; i < daftarTanaman.size(); i++) {
-                        System.out.println((i + 1) + ". " + daftarTanaman.get(i).nama);
-                    }
-                    System.out.println("Pilih nomor: ");
-                    int no = sc.nextInt();
+                int sub;
+                do {
+                    System.out.println("\n--- MENU CATATAN ---");
+                    System.out.println("1. Tambah Catatan");
+                    System.out.println("2. Lihat Semua Catatan");
+                    System.out.println("3. Ubah Catatan");
+                    System.out.println("4. Hapus Catatan");
+                    System.out.println("0. Kembali");
+                    System.out.print("Pilih: ");
+                    sub = sc.nextInt();
                     sc.nextLine();
 
-                    if (no >= 1 && no <= daftarTanaman.size()) {
-                        Tanaman t = daftarTanaman.get(no - 1);
-                        Manfaat m = daftarManfaat.get(no - 1);
-                        Resep r = daftarResep.get(no - 1);
+                    if (sub == 1) {
+                        if (daftarPengguna.isEmpty() || daftarTanaman.isEmpty()) {
+                            System.out.println("Pastikan data pengguna dan tanaman sudah ada terlebih dahulu.");
+                        } else {
+                            System.out.println("Pilih Pengguna:");
+                            for (int i = 0; i < daftarPengguna.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarPengguna.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int noPengguna = sc.nextInt();
+                            sc.nextLine();
 
-                        System.out.println("Nama Tanaman   : ");
-                        t.nama = sc.nextLine();
-                        System.out.println("Nama Latin     : ");
-                        t.namaLatin = sc.nextLine();
-                        System.out.println("Penyakit       : ");
-                        m.penyakit = sc.nextLine();
-                        System.out.println("Bagian Tanaman : ");
-                        m.bagianTanaman = sc.nextLine();
-                        System.out.println("Bahan          : ");
-                        r.bahan = sc.nextLine();
-                        System.out.println("Cara Buat      : ");
-                        r.caraBuat = sc.nextLine();
-                        System.out.println("Data berhasil diubah!");
-                    } else {
-                        System.out.println("Nomor tidak valid!");
-                    }
-                }
+                            System.out.println("Pilih Tanaman:");
+                            for (int i = 0; i < daftarTanaman.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarTanaman.get(i).nama);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int noTanaman = sc.nextInt();
+                            sc.nextLine();
 
-            } else if (pilihan == 4) {
-                if (daftarTanaman.isEmpty()) {
-                    System.out.println("Belum ada data.");
-                } else {
-                    for (int i = 0; i < daftarTanaman.size(); i++) {
-                        System.out.println((i + 1) + ". " + daftarTanaman.get(i).nama);
-                    }
-                    System.out.println("Pilih nomor: ");
-                    int no = sc.nextInt();
-                    sc.nextLine();
+                            if (noPengguna >= 1 && noPengguna <= daftarPengguna.size() &&
+                                    noTanaman >= 1 && noTanaman <= daftarTanaman.size()) {
+                                String namaPengguna = daftarPengguna.get(noPengguna - 1).nama;
+                                String namaTanaman = daftarTanaman.get(noTanaman - 1).nama;
+                                System.out.print("Keterangan   : ");
+                                String keterangan = sc.nextLine();
+                                daftarCatatan.add(new Catatan(namaPengguna, namaTanaman, keterangan));
+                                System.out.println("Catatan berhasil ditambahkan!");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
 
-                    if (no >= 1 && no <= daftarTanaman.size()) {
-                        System.out.println(daftarTanaman.get(no - 1).nama + " berhasil dihapus!");
-                        daftarTanaman.remove(no - 1);
-                        daftarManfaat.remove(no - 1);
-                        daftarResep.remove(no - 1);
-                    } else {
-                        System.out.println("Nomor tidak valid.");
+                    } else if (sub == 2) {
+                        if (daftarCatatan.isEmpty()) {
+                            System.out.println("Belum ada data catatan.");
+                        } else {
+                            for (int i = 0; i < daftarCatatan.size(); i++) {
+                                System.out.println("\nNo. " + (i + 1));
+                                daftarCatatan.get(i).tampilInfo();
+                            }
+                        }
+
+                    } else if (sub == 3) {
+                        if (daftarCatatan.isEmpty()) {
+                            System.out.println("Belum ada data catatan.");
+                        } else {
+                            for (int i = 0; i < daftarCatatan.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarCatatan.get(i).namaPengguna + " - " + daftarCatatan.get(i).namaTanaman);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarCatatan.size()) {
+                                Catatan c = daftarCatatan.get(no - 1);
+                                System.out.print("Keterangan baru : ");
+                                c.keterangan = sc.nextLine();
+                                System.out.println("Catatan berhasil diubah!");
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
+
+                    } else if (sub == 4) {
+                        if (daftarCatatan.isEmpty()) {
+                            System.out.println("Belum ada data catatan.");
+                        } else {
+                            for (int i = 0; i < daftarCatatan.size(); i++) {
+                                System.out.println((i + 1) + ". " + daftarCatatan.get(i).namaPengguna + " - " + daftarCatatan.get(i).namaTanaman);
+                            }
+                            System.out.print("Pilih nomor: ");
+                            int no = sc.nextInt();
+                            sc.nextLine();
+                            if (no >= 1 && no <= daftarCatatan.size()) {
+                                System.out.println("Catatan berhasil dihapus.");
+                                daftarCatatan.remove(no - 1);
+                            } else {
+                                System.out.println("Nomor tidak valid.");
+                            }
+                        }
                     }
-                }
+
+                } while (sub != 0);
             }
+
         } while (pilihan != 0);
 
-        System.out.println("Program selesai. Terima kasih!");
+        System.out.println("Program selesai.");
         sc.close();
     }
 }
