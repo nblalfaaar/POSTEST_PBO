@@ -5,11 +5,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.toga</groupId>
-  <artifactId>posttest2</artifactId>
+  <artifactId>posttest3</artifactId>
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>posttest2</name>
+  <name>posttest3</name>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
