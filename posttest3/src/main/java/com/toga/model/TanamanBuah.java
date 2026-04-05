@@ -6,7 +6,7 @@ public class TanamanBuah extends Tanaman{
     private String musimBerbuah;
 
     public TanamanBuah(String nama, String namaLatin, String manfaat, String musimBerbuah) {
-        super(nama, namaLatin, manfaat, "Buah");
+        super(nama, namaLatin, manfaat);
         this.musimBerbuah = musimBerbuah;
     }
 

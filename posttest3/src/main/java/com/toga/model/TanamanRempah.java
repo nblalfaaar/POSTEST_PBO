@@ -6,7 +6,7 @@ public class TanamanRempah extends Tanaman{
     private String aroma;
 
     public TanamanRempah(String nama, String namaLatin, String manfaat, String aroma) {
-        super(nama, namaLatin, manfaat, "Rempah");
+        super(nama, namaLatin, manfaat);
         this.aroma = aroma;
     }
 

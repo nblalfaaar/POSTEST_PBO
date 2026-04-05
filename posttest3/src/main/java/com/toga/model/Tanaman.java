@@ -6,13 +6,11 @@ public class Tanaman {
     protected String nama;
     private String namaLatin;
     private String manfaat;
-    private final String jenis;
 
-    public Tanaman(String nama, String namaLatin, String manfaat, String jenis) {
+    public Tanaman(String nama, String namaLatin, String manfaat) {
         this.nama = nama;
         this.namaLatin = namaLatin;
         this.manfaat = manfaat;
-        this.jenis = jenis;
     }
 
     public String getNama() {
@@ -25,10 +23,6 @@ public class Tanaman {
 
     public String getManfaat() {
         return manfaat;
-    }
-
-    public String getJenis() {
-        return jenis;
     }
 
     public boolean setNama(String nama) {

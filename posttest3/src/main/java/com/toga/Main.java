@@ -112,30 +112,24 @@ public class Main {
                                     System.out.print("Manfaat      : ");
                                 }
 
-                                switch (t.getJenis()) {
-                                    case "Rempah":
-                                        TanamanRempah tr = (TanamanRempah) t;
+                                if (t instanceof TanamanRempah) {
+                                    TanamanRempah tr = (TanamanRempah) t;
+                                    System.out.print("Aroma        : ");
+                                    while (!tr.setAroma(sc.nextLine())) {
                                         System.out.print("Aroma        : ");
-                                        while (!tr.setAroma(sc.nextLine())) {
-                                            System.out.print("Aroma        : ");
-                                        }
-                                        break;
-                                    case "Daun":
-                                        TanamanDaun td = (TanamanDaun) t;
+                                    }
+                                } else if (t instanceof TanamanDaun) {
+                                    TanamanDaun td = (TanamanDaun) t;
+                                    System.out.print("Bentuk Daun  : ");
+                                    while (!td.setBentukDaun(sc.nextLine())) {
                                         System.out.print("Bentuk Daun  : ");
-                                        while (!td.setBentukDaun(sc.nextLine())) {
-                                            System.out.print("Bentuk Daun  : ");
-                                        }
-                                        break;
-                                    case "Buah":
-                                        TanamanBuah tb = (TanamanBuah) t;
+                                    }
+                                } else if (t instanceof TanamanBuah) {
+                                    TanamanBuah tb = (TanamanBuah) t;
+                                    System.out.print("Musim Berbuah: ");
+                                    while (!tb.setMusimBerbuah(sc.nextLine())) {
                                         System.out.print("Musim Berbuah: ");
-                                        while (!tb.setMusimBerbuah(sc.nextLine())) {
-                                            System.out.print("Musim Berbuah: ");
-                                        }
-                                        break;
-                                    default:
-                                        System.out.println("Jenis tidak dikenal.");
+                                    }
                                 }
                                 System.out.println("Tanaman berhasil diubah!");
                             } else {
